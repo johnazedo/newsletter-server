@@ -19,7 +19,7 @@ class FavoriteNewsListView(ListAPIView):
     serializer_class = NewsListSerializer
 
     def get_queryset(self):
-        return News.objects.filter(usernews__user=self.request.user, usernews__liked=True)
+        return News.objects.filter(usernews__user=self.request.user, usernews__liked=True).distinct()
 
 
 class ReadNewsListView(ListAPIView):
@@ -27,7 +27,7 @@ class ReadNewsListView(ListAPIView):
     serializer_class = NewsListSerializer
 
     def get_queryset(self):
-        return News.objects.filter(usernews__user=self.request.user, usernews__read=True)
+        return News.objects.filter(usernews__user=self.request.user, usernews__read=True).distinct()
 
 class NewsDetailView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]

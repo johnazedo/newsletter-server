@@ -48,7 +48,8 @@ class UserNewsSerializer(ModelSerializer):
         user_news = UserNews.objects.create(
             user=self.context['request'].user,
             news=validated_data['news'],
-            read=True
+            read=validated_data['read'],
+            liked=validated_data['liked']
         )
 
         return user_news

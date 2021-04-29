@@ -22,7 +22,7 @@ class News(models.Model):
 
     @property
     def number_likes(self):
-        return UserNews.objects.filter(news_id=self.id).count()
+        return UserNews.objects.filter(news_id=self.id, liked=True).count()
 
     # def save(self, **kwargs):
     #     self.likes = UserNews.objects.filter(news=self.id).count()
