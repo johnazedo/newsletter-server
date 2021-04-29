@@ -2,8 +2,8 @@ from django.db.models import Q
 from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, \
     CreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from news.models import News, Comment
-from news.serializers import NewsSerializer, NewsListSerializer, CommentSerializer
+from news.models import News, Comment, UserNews
+from news.serializers import NewsSerializer, NewsListSerializer, CommentSerializer, UserNewsSerializer
 
 
 class NewsListView(ListAPIView):
@@ -34,6 +34,12 @@ class NewsDetailView(RetrieveAPIView):
     serializer_class = NewsSerializer
     queryset = News.objects.all()
     lookup_field = 'pk'
+
+
+class UserNewsCreateView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserNewsSerializer
+    queryset = UserNews.objects.all()
 
 
 class CommentCreateView(CreateAPIView):

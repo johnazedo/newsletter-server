@@ -8,9 +8,6 @@ class News(models.Model):
     text = models.TextField()
     author = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField()
-    # likes = models.IntegerField(default=0)
-    # qComments = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'News'

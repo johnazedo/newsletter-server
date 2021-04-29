@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from news.models import News, Comment
+from news.models import News, Comment, UserNews
 
 
 class NewsListSerializer(ModelSerializer):
@@ -35,4 +35,20 @@ class NewsSerializer(ModelSerializer):
 
     class Meta:
         model = News
-        fields = ['id', 'title', 'subtitle', 'author', 'number_likes', 'number_comments', 'image', 'text', 'comments', 'created_at']
+        fields = ['id', 'title', 'subtitle', 'author', 'number_likes', 'number_comments', 'text', 'comments', 'created_at']
+
+
+class UserNewsSerializer(ModelSerializer):
+
+    class Meta:
+        model = UserNews
+        fields = ['news', 'liked', 'read']
+
+    def create(self, validated_data):
+        user_news = UserNews.objects.create(
+            user=self.context['request'].user,
+            news=validated_data['news'],
+            read=True
+        )
+
+        return user_news
