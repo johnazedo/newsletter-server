@@ -1,4 +1,4 @@
-# NewsletterServer
+# NewsLetterServer
 
 Server that provide data to newsletter app.
 
