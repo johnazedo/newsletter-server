@@ -1,5 +1,5 @@
 # NewsLetterServer
 
-Server that provide data to newsletter app.
+Servidor para prover dados para o aplicativo News
 
-Verions 1.0 has finished.
+Aplicativo: https://github.com/JohnAzedo/NewsLetter
